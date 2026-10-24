@@ -1,0 +1,25 @@
+name = "Condensate"
+license = "MIT"
+licenselink = "https://github.com/jamesejr/hugo-theme-condensate/blob/main/LICENSE"
+description = "A minimal, typography-first Hugo theme inspired by Vapor."
+
+homepage = "https://github.com/jamesejr/hugo-theme-condensate"
+
+demosite = "https://jamesejr.github.io/hugo-theme-condensate"
+
+tags = ["blog", "minimal", "responsive", "dark", "light"]
+features = ["blog", "rss", "seo", "syntax highlighting"]
+
+[author]
+  name = "James Espinosa"
+  homepage = "https://jamesejr.com"
+
+[original]
+  name = "Vapor"
+  homepage = "https://sethlilly.com"
+  repo = "https://github.com/sethlilly/Vapor"
+
+[module]
+  [module.hugoVersion]
+    min = "0.158.0"
+
