@@ -1,0 +1,6 @@
+*.lock
+public/
+resources/
+exampleSite/public/
+exampleSite/resources/
+
