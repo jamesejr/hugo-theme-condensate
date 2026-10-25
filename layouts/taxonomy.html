@@ -1,0 +1,16 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1 class="page-title">{{ .Title }}</h1>
+  <div class="meta">{{ i18n "topics_count" (len .Data.Terms) }}</div>
+</header>
+<ul class="term-list">
+  {{- range .Data.Terms.ByCount }}
+  <li>
+    <a class="term-row" href="{{ .Page.RelPermalink }}">
+      <span class="term-name">{{ .Page.Title }}</span>
+      <span class="term-count">{{ i18n "posts_count" .Count }}</span>
+    </a>
+  </li>
+  {{- end }}
+</ul>
+{{ end }}

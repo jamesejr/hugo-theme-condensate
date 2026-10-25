@@ -1,0 +1,4 @@
+<footer class="site-footer wrap">
+  {{- with site.Copyright }}{{ . | safeHTML }}{{ else }}© {{ now.Year }} {{ site.Title }}{{ end }}
+  · {{ i18n "powered_by" }} <a href="https://gohugo.io/">Hugo</a>
+</footer>

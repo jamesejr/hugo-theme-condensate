@@ -1,0 +1,37 @@
+{{ define "main" }}
+<article class="post">
+  <header class="page-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{- if and (not .Date.IsZero) (ne .Type "page") }}
+    <div class="meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "Monday, January 2, 2006") }}</time>
+      {{- if site.Params.showReadingTime | default true }} · {{ i18n "reading_time" .ReadingTime }}{{ end }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- if and .Params.toc (gt (len .TableOfContents) 32) }}
+  <details class="toc" open>
+    <summary>{{ i18n "contents" }}</summary>
+    {{ .TableOfContents }}
+  </details>
+  {{- end }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{- with .GetTerms "tags" }}
+  <ul class="post-tags" aria-label="{{ i18n "tags" }}">
+    {{- range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+  </ul>
+  {{- end }}
+
+  {{- if and (eq .Type "posts") (or .PrevInSection .NextInSection) }}
+  <nav class="pagination" aria-label="{{ i18n "pagination" }}">
+    {{- with .NextInSection }}<a class="prev" href="{{ .RelPermalink }}" rel="prev">← {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{- with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}" rel="next">{{ .Title }} →</a>{{ else }}<span></span>{{ end }}
+  </nav>
+  {{- end }}
+</article>
+{{ end }}

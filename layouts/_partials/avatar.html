@@ -1,0 +1,25 @@
+{{- /*
+  Circular avatar. site.Params.avatar is a path under assets/ (preferred,
+  resized at build time) or static/. Use a roughly square image.
+  avatarScale and avatarFocus ("x% y%") zoom in and centre on a point, so a
+  wide photo can be cropped to the face.
+*/ -}}
+{{- with site.Params.avatar }}
+{{- $scale := site.Params.avatarScale | default 1 }}
+{{- $focus := split (site.Params.avatarFocus | default "50% 50%") " " }}
+{{- $fx := div (float (strings.TrimSuffix "%" (index $focus 0))) 100 }}
+{{- $fy := div (float (strings.TrimSuffix "%" (index $focus 1))) 100 }}
+<span class="avatar" style="--scale:{{ $scale }};--fx:{{ $fx }};--fy:{{ $fy }}">
+  {{- $alt := site.Params.avatarAlt | default site.Title }}
+  {{- with resources.Get . }}
+    {{- if eq .MediaType.SubType "svg" }}
+    <img src="{{ .RelPermalink }}" alt="{{ $alt }}" width="96" height="96">
+    {{- else }}
+    {{- $img := .Fill "480x480 q90" }}
+    <img src="{{ $img.RelPermalink }}" alt="{{ $alt }}" width="96" height="96">
+    {{- end }}
+  {{- else }}
+  <img src="{{ . | relURL }}" alt="{{ $alt }}" width="96" height="96">
+  {{- end }}
+</span>
+{{- end }}

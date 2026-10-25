@@ -1,0 +1,39 @@
+baseURL = "https://example.com/"
+locale = "en-US"
+title = "Jane Doe"
+theme = "hugo-theme-condensate"
+
+[pagination]
+  pagerSize = 2
+
+[taxonomies]
+  tag = "tags"
+
+[markup.highlight]
+  noClasses = false
+
+[params]
+  # "system" (default), "light" or "dark"
+  colorScheme = "system"
+  showThemeToggle = true
+  tagline = "Notes on malware analysis, detection engineering, and digital forensics."
+  # Path under assets/ (or static/). Use a roughly square image.
+  avatar = "images/avatar.svg"
+  # Optional: zoom in and centre on a point if your photo is a wide shot.
+  # avatarScale = 1.4
+  # avatarFocus = "51% 44%"
+
+[menus]
+  [[menus.main]]
+    name = "Posts"
+    url = "/"
+    weight = 10
+  [[menus.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+  [[menus.main]]
+    name = "About"
+    url = "/about/"
+    weight = 30
+

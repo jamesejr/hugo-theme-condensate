@@ -1,0 +1,10 @@
+# Theme defaults. Override any of these in your site's hugo.toml.
+[params]
+  # "system" follows the reader's OS setting, or force "light" / "dark".
+  colorScheme = "system"
+  # Show the sun/moon button so readers can override the default.
+  showThemeToggle = true
+  showReadingTime = true
+  dateFormat = "Monday, January 2, 2026"
+  mainSections = ["posts"]
+

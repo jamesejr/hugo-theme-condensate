@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+{{- with or .Description .Summary site.Params.description }}
+<meta name="description" content="{{ . | plainify | truncate 160 }}">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}{{ else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">
+{{- end }}
+
+{{- /* Apply a saved light/dark choice before first paint (avoids a flash). */ -}}
+{{- if site.Params.showThemeToggle | default true }}
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+{{- end }}
+
+{{- $scheme := site.Params.colorScheme | default "system" }}
+<meta name="color-scheme" content="{{ if eq $scheme "system" }}light dark{{ else }}{{ $scheme }}{{ end }}">
+
+{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<link rel="preload" href="{{ "fonts/roboto-slab-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/merriweather-latin-300-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{ template "_internal/opengraph.html" . }}

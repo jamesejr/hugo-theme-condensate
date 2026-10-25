@@ -1,0 +1,12 @@
+<article class="entry">
+  <h2 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  {{- if not .Date.IsZero }}
+  <time class="meta" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "Monday, January 2, 2006") }}</time>
+  {{- end }}
+  <p class="summary">
+    {{- with .Description }}{{ . }}{{ else }}{{ $s := .Summary | plainify | htmlUnescape | strings.TrimSpace }}{{ $s }}{{ if and .Truncated (not (findRE `[.!?:]$` $s)) }}…{{ end }}{{ end -}}
+  </p>
+  <a class="more" href="{{ .RelPermalink }}">{{ i18n "read_more" }}
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M6.5 4.5L10 8l-3.5 3.5" fill="none" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</article>

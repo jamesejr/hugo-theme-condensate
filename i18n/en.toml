@@ -1,0 +1,47 @@
+[skip_to_content]
+other = "Skip to content"
+
+[main_menu]
+other = "Main"
+
+[toggle_theme]
+other = "Toggle light and dark theme"
+
+[powered_by]
+other = "Powered by"
+
+[read_more]
+other = "Read this article"
+
+[older_posts]
+other = "Older posts"
+
+[newer_posts]
+other = "Newer posts"
+
+[pagination]
+other = "Pagination"
+
+[contents]
+other = "Contents"
+
+[tags]
+other = "Tags"
+
+[not_found]
+other = "Page not found"
+
+[back_home]
+other = "Back to the home page"
+
+[reading_time]
+one = "1 min read"
+other = "{{ . }} min read"
+
+[posts_count]
+one = "{{ . }} post"
+other = "{{ . }} posts"
+
+[topics_count]
+one = "{{ . }} topic"
+other = "{{ . }} topics"

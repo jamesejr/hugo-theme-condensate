@@ -1,0 +1,19 @@
+{{ define "main" }}
+<header class="hero">
+  {{- $about := site.GetPage "/about" }}
+  {{- if $about }}<a class="avatar-link" href="{{ $about.RelPermalink }}" aria-label="{{ $about.Title }}">{{ partial "avatar.html" . }}</a>{{ else }}{{ partial "avatar.html" . }}{{ end }}
+  <h1 class="hero-title">{{ site.Params.homeTitle | default site.Title }}</h1>
+</header>
+
+{{ with site.Params.tagline }}<p class="tagline">{{ . }}</p>{{ end }}
+
+{{ with .Content }}<div class="prose home-intro">{{ . }}</div>{{ end }}
+
+<div class="entries">
+  {{- $sections := site.Params.mainSections | default (slice "posts") }}
+  {{- $pages := where site.RegularPages "Type" "in" $sections }}
+  {{- $pag := .Paginate $pages }}
+  {{- range $pag.Pages }}{{ partial "entry.html" . }}{{ end }}
+</div>
+{{ partial "pagination.html" . }}
+{{ end }}

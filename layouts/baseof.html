@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{{- $scheme := site.Params.colorScheme | default "system" -}}
+<html lang="{{ site.Language.Locale | default "en" }}"{{ if or (eq $scheme "light") (eq $scheme "dark") }} data-theme="{{ $scheme }}"{{ end }}>
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
+  {{ partial "header.html" . }}
+  <main id="main" class="wrap">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ with resources.Get "js/theme.js" | minify | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{ end }}
+</body>
+</html>
