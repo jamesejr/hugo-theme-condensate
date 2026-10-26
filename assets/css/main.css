@@ -210,7 +210,7 @@ img{max-width:100%;height:auto}
 .highlight:hover .copy-btn,.copy-btn:focus-visible{opacity:1}
 @media (hover:none){.copy-btn{opacity:1}}
 
-/* Syntax highlighting (Hugo/Chroma classes; set markup.highlight.noClasses = false) */
+/* Syntax highlighting (Hugo/Chroma classes; layouts/_markup/render-codeblock.html forces class output) */
 .chroma .k,.chroma .kc,.chroma .kd,.chroma .kn,.chroma .kp,.chroma .kr,.chroma .kt,.chroma .ow{color:var(--tok-keyword)}
 .chroma .s,.chroma .sa,.chroma .sb,.chroma .sc,.chroma .dl,.chroma .sd,.chroma .s2,.chroma .se,.chroma .sh,.chroma .si,.chroma .sx,.chroma .sr,.chroma .s1,.chroma .ss,.chroma .l,.chroma .ld,.chroma .sl{color:var(--tok-string)}
 .chroma .c,.chroma .ch,.chroma .cm,.chroma .c1,.chroma .cs,.chroma .cp,.chroma .cpf{color:var(--tok-comment);font-style:italic}

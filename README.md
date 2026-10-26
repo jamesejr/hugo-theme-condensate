@@ -59,6 +59,8 @@ Other options go under `[params]`:
 [params]
   # Max lines of each post's preview in the feed (default 4, 0 shows the full summary)
   summaryLines = 4
+  # Meta description for pages without their own (defaults to `tagline`)
+  description = "A short summary of your site."
 ```
 
 ### Light and dark colors

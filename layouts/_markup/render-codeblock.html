@@ -1,0 +1,5 @@
+{{- /* Always use class-based highlighting so the theme stylesheet colors the code,
+       whatever markup.highlight settings the site has. Without this, Hugo falls
+       back to inline monokai styles (a dark box even in light mode). Options from
+       the code fence, such as {linenos=inline hl_lines=[2]}, still apply. */ -}}
+{{- (transform.HighlightCodeBlock . (dict "noClasses" false)).Wrapped -}}

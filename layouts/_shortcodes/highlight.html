@@ -1,0 +1,6 @@
+{{- /* {{< highlight go "linenos=inline,hl_lines=2" >}}...{{< /highlight >}}
+       Same as Hugo's built-in, but always class-based so the theme stylesheet
+       colors it (see _markup/render-codeblock.html). */ -}}
+{{- $opts := "noClasses=false" -}}
+{{- with .Get 1 }}{{ $opts = printf "%s,noClasses=false" . }}{{ end -}}
+{{- highlight (trim .InnerDeindent "\n\r") (.Get 0) $opts -}}
