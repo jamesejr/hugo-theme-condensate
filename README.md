@@ -12,7 +12,7 @@ A minimal, typography-first Hugo theme inspired by [Vapor](https://github.com/se
 
 | Light | Dark |
 | --- | --- |
-| ![Condensate in light mode](images/screenshot.png) | ![Condensate in dark mode](images/screenshot-dark.png) |
+| ![Condensate in light mode](https://raw.githubusercontent.com/jamesejr/hugo-theme-condensate/main/images/screenshot.png) | ![Condensate in dark mode](https://raw.githubusercontent.com/jamesejr/hugo-theme-condensate/main/images/screenshot-dark.png) |
 
 ## Features
 

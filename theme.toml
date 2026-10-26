@@ -7,7 +7,7 @@ homepage = "https://github.com/jamesejr/hugo-theme-condensate"
 
 demosite = "https://jamesejr.github.io/hugo-theme-condensate"
 
-tags = ["blog", "minimal", "responsive", "dark", "light"]
+tags = ["blog", "personal", "minimal", "dark mode", "light mode"]
 features = ["blog", "rss", "seo", "syntax highlighting"]
 
 [author]
@@ -18,8 +18,4 @@ features = ["blog", "rss", "seo", "syntax highlighting"]
   name = "Vapor"
   homepage = "https://sethlilly.com"
   repo = "https://github.com/sethlilly/Vapor"
-
-[module]
-  [module.hugoVersion]
-    min = "0.158.0"
 

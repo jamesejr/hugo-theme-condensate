@@ -1,3 +1,7 @@
+[module]
+  [module.hugoVersion]
+    min = "0.158.0"
+
 # Theme defaults. Override any of these in your site's hugo.toml.
 [params]
   # "system" follows the reader's OS setting, or force "light" / "dark".
