@@ -76,9 +76,12 @@
     btn.className = "copy-btn";
     btn.textContent = "Copy";
     btn.addEventListener("click", function () {
-      var code = wrapper.querySelector("code");
+      var codes = wrapper.querySelectorAll("code");
+      var code = codes[codes.length - 1];
       if (!code || !navigator.clipboard) return;
-      navigator.clipboard.writeText(code.innerText).then(function () {
+      var copy = code.cloneNode(true);
+      copy.querySelectorAll(".ln, .lnt").forEach(function (n) { n.remove(); });
+      navigator.clipboard.writeText(copy.textContent).then(function () {
         btn.textContent = "Copied";
         setTimeout(function () { btn.textContent = "Copy"; }, 1500);
       });

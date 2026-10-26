@@ -224,6 +224,19 @@ img{max-width:100%;height:auto}
 .chroma .gi{color:var(--tok-string)}
 .chroma .gd,.chroma .err{color:var(--tok-var)}
 .chroma .gh,.chroma .gu,.chroma .ge{font-weight:600}
+/* Highlighted lines (hl_lines) and line numbers (linenos=inline, or the default table layout) */
+.chroma .hl{display:block;margin-inline:-20px;padding-inline:20px;background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.chroma .ln,.chroma .lnt{color:var(--tok-comment);opacity:.75;user-select:none;-webkit-user-select:none}
+.chroma .ln{display:inline-block;min-width:2.5ch;margin-right:1.2em;text-align:right}
+.prose .highlight>div.chroma{padding:18px 20px;border-radius:6px;background:var(--code-block-bg);overflow-x:auto}
+.prose pre,.prose .highlight>div.chroma{scrollbar-color:var(--muted) var(--code-block-bg)}
+.prose .chroma .lntable{display:table;width:100%;max-width:none;margin:0;border-spacing:0;border-collapse:separate;overflow:visible;font-size:14px;line-height:1.65}
+.prose .chroma .lntd{padding:0;border:0;vertical-align:top}
+.prose .chroma .lntd:first-child{width:1%;text-align:right;white-space:nowrap}
+.prose .chroma .lntd pre{margin:0;padding:0;border-radius:0;background:none;overflow:visible}
+.prose .chroma .lntd:first-child .lnt{padding-right:1.2em}
+.prose .chroma .lntd:first-child .hl{margin-inline:-20px 0;padding-inline:20px 1.2em}
+.prose .chroma .lntd:last-child .hl{margin-inline:0 -20px;padding-inline:0 20px}
 
 /* Table of contents */
 .toc{margin-top:32px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:15px;line-height:1.7}

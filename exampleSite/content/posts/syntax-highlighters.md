@@ -10,6 +10,23 @@ Code blocks are highlighted at build time, so there is no script to load and no 
 
 Each block below is tagged with its language. Use the name after the opening backticks, such as `python` or `nasm`, and the theme does the rest.
 
+Line numbers are off by default. Add options after the language on the opening fence to turn them on and to highlight lines, as in the example below. Use `linenos=table` for a separate number column, and `hl_lines="2-4"` for a range. To number every block on the site, set `lineNos = true` under `[markup.highlight]` in your site config.
+
+````text
+```go {linenos=inline,hl_lines=[6]}
+````
+
+```go {linenos=inline,hl_lines=[6]}
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("this line is highlighted")
+	fmt.Println("this one is not")
+}
+```
+
 ## Python
 
 ```python
