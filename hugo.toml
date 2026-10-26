@@ -5,6 +5,8 @@
   # Show the sun/moon button so readers can override the default.
   showThemeToggle = true
   showReadingTime = true
-  dateFormat = "Monday, January 2, 2026"
+  dateFormat = "Monday, January 2, 2006"
   mainSections = ["posts"]
+  # Max lines of each post's preview in the feed. 0 shows the full summary.
+  summaryLines = 4
 

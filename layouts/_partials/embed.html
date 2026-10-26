@@ -1,0 +1,11 @@
+{{- /* Click-to-load embed card. Nothing is requested from the provider until the
+       reader clicks (see theme.js); without JavaScript the card is a plain link.
+       Args: kind, provider, host, title, src (embed URL), href (page URL). */ -}}
+<figure class="embed embed-{{ .kind }}" data-embed-kind="{{ .kind }}" data-embed-src="{{ .src }}" data-embed-title="{{ .title }}">
+  <a class="embed-card" href="{{ .href }}" target="_blank" rel="noopener noreferrer">
+    <svg class="embed-play" width="40" height="40" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M6.5 4.5L10 8l-3.5 3.5" fill="none" stroke="var(--bg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="embed-title">{{ .title }}</span>
+    <span class="embed-note">{{ i18n "embed_load" (dict "Host" .host) }}</span>
+    <span class="embed-privacy">{{ i18n "embed_privacy" (dict "Provider" .provider) }}</span>
+  </a>
+</figure>

@@ -4,7 +4,7 @@ title = "Jane Doe"
 theme = "hugo-theme-condensate"
 
 [pagination]
-  pagerSize = 2
+  pagerSize = 5
 
 [taxonomies]
   tag = "tags"
@@ -16,12 +16,22 @@ theme = "hugo-theme-condensate"
   # "system" (default), "light" or "dark"
   colorScheme = "system"
   showThemeToggle = true
-  tagline = "Notes on malware analysis, detection engineering, and digital forensics."
+  # Preview length in lines (default 4, 0 = full summary).
+  # summaryLines = 4
+  tagline = "A minimal, typography-first Hugo theme inspired by Vapor."
   # Path under assets/ (or static/). Use a roughly square image.
   avatar = "images/avatar.svg"
   # Optional: zoom in and centre on a point if your photo is a wide shot.
   # avatarScale = 1.4
   # avatarFocus = "51% 44%"
+
+# Optional: override the light and dark palettes (hex, rgb() or hsl()).
+# [params.light]
+#   background = "#faf6ee"
+#   accent = "#9a4a1a"
+# [params.dark]
+#   background = "#1e1e2e"
+#   accent = "hsl(265 80% 75%)"
 
 [menus]
   [[menus.main]]

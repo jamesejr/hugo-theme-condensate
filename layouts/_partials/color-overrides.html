@@ -1,0 +1,46 @@
+{{- /* Optional color overrides from [params.light] and [params.dark]. Values are
+       checked against a strict color pattern so nothing else can reach the
+       stylesheet. Setting background or accent also re-derives the surfaces that
+       depend on it. Light overrides sit on :root and dark ones on the dark
+       selectors, which are more specific, so each palette only applies to its mode. */ -}}
+{{- $pattern := `^(#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})|(rgb|hsl)a?\([0-9 ,.%/deg-]+\))$` -}}
+{{- $vars := dict "background" "--bg" "text" "--fg" "heading" "--heading" "muted" "--muted" "accent" "--accent" -}}
+{{- $css := "" -}}
+{{- range $scheme := slice "light" "dark" -}}
+  {{- $cfg := index site.Params $scheme -}}
+  {{- if reflect.IsMap $cfg -}}
+    {{- $decls := slice -}}
+    {{- range $key, $var := $vars -}}
+      {{- with index $cfg $key -}}
+        {{- $v := string . -}}
+        {{- if not (findRE $pattern $v) }}{{ errorf "params.%s.%s: %q is not a hex, rgb() or hsl() color" $scheme $key $v }}{{ end -}}
+        {{- $decls = $decls | append (printf "%s:%s" $var $v) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if index $cfg "background" -}}
+      {{- if eq $scheme "dark" -}}
+        {{- $decls = $decls | append "--rule:color-mix(in srgb,var(--bg) 86%,#fff)" "--code-bg:color-mix(in srgb,var(--bg) 94%,#fff)" "--code-block-bg:color-mix(in srgb,var(--bg) 75%,#000)" -}}
+      {{- else -}}
+        {{- $decls = $decls | append "--rule:color-mix(in srgb,var(--bg) 90%,#000)" "--code-bg:color-mix(in srgb,var(--bg) 94%,#000)" "--code-block-bg:color-mix(in srgb,var(--bg) 97%,#000)" -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if index $cfg "accent" -}}
+      {{- if eq $scheme "dark" -}}
+        {{- $decls = $decls | append "--accent-hover:color-mix(in srgb,var(--accent) 75%,#fff)" "--accent-line:color-mix(in srgb,var(--accent) 50%,var(--bg))" -}}
+      {{- else -}}
+        {{- $decls = $decls | append "--accent-hover:color-mix(in srgb,var(--accent) 80%,#000)" "--accent-line:color-mix(in srgb,var(--accent) 40%,var(--bg))" -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $decls -}}
+      {{- $d := delimit $decls ";" -}}
+      {{- if eq $scheme "dark" -}}
+        {{- $css = printf `%s:root[data-theme="dark"]{%s}@media (prefers-color-scheme:dark){:root:not([data-theme]){%s}}` $css $d $d -}}
+      {{- else -}}
+        {{- $css = printf "%s:root{%s}" $css $d -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $css }}
+<style>{{ . | safeCSS }}</style>
+{{- end -}}

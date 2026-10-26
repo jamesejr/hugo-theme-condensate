@@ -3,7 +3,9 @@
   {{- if not .Date.IsZero }}
   <time class="meta" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "Monday, January 2, 2006") }}</time>
   {{- end }}
-  <p class="summary">
+  {{- $lines := 4 }}
+  {{- if isset site.Params "summarylines" }}{{ $lines = int site.Params.summaryLines }}{{ end }}
+  <p class="summary{{ if gt $lines 0 }} clamped{{ end }}"{{ if gt $lines 0 }} style="--summary-lines:{{ $lines }}"{{ end }}>
     {{- with .Description }}{{ . }}{{ else }}{{ $s := .Summary | plainify | htmlUnescape | strings.TrimSpace }}{{ $s }}{{ if and .Truncated (not (findRE `[.!?:]$` $s)) }}…{{ end }}{{ end -}}
   </p>
   <a class="more" href="{{ .RelPermalink }}">{{ i18n "read_more" }}

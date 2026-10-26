@@ -33,6 +33,77 @@ cd hugo-theme-condensate/exampleSite
 hugo server --themesDir ../..
 ```
 
+## Features
+
+- **Typography first.** Clean, minimal and elegant, with slab-serif headings, a comfortable serif body and generous spacing. Fonts are bundled.
+- **Light and dark modes.** Follows the reader's system setting, with a toggle that remembers their choice. Override either palette with `[params.light]` and `[params.dark]`.
+- **Private by default.** No analytics and no third-party requests. YouTube, Vimeo and GitHub Gist embeds load only after the reader clicks, inside a sandboxed iframe.
+- **Syntax highlighting.** Highlighted at build time with no JavaScript, colors that follow light and dark mode, and a copy button on every code block.
+- **Configurable feed.** Set how many posts appear per page and how many lines of each post's preview are shown.
+- **Made for technical writing.** Optional table of contents, reading time, tags, and styled tables, task lists and blockquotes.
+- **Accessible and light.** Skip link, visible focus styles, reduced-motion and print styles, and a few KB of vanilla JavaScript with no frameworks.
+- **Standards friendly.** RSS, Open Graph tags and translatable strings out of the box.
+
+## Configuration
+
+Posts per page uses Hugo's standard setting. Hugo's default is 10, so set it in your `hugo.toml`:
+
+```toml
+[pagination]
+  pagerSize = 5
+```
+
+Other options go under `[params]`:
+
+```toml
+[params]
+  # Max lines of each post's preview in the feed (default 4, 0 shows the full summary)
+  summaryLines = 4
+```
+
+### Light and dark colors
+
+Override either palette under `[params.light]` and `[params.dark]`. Every key is optional, and each palette only applies in its own mode:
+
+```toml
+[params.light]
+  background = "#faf6ee"
+  text = "#3b3a36"
+  accent = "#9a4a1a"
+
+[params.dark]
+  background = "#1e1e2e"
+  text = "#cdd6f4"
+  heading = "#f5f5ff"
+  muted = "#9399b2"
+  accent = "hsl(265 80% 75%)"
+```
+
+The keys are `background`, `text`, `heading`, `muted` and `accent`. Values can be hex (`#1e1e2e`, `#fff`), `rgb()` or `hsl()`. Anything else fails the build.
+
+Setting `background` also adjusts the borders and code block backgrounds to match, and setting `accent` adjusts the link hover and underline colors, so you usually only need these two. Check that your text still has enough contrast against the new background (4.5:1 for body text is the usual target). Syntax highlighting colors are not affected.
+
+## Embeds
+
+The theme makes no third-party requests by default: fonts are bundled and there is no analytics. The `youtube`, `vimeo` and `gist` shortcodes keep it that way by being **click-to-load**. Readers see a card, nothing is requested from the provider until they click it, and the embed then runs in a sandboxed iframe. Without JavaScript the card is a plain link to the provider.
+
+```
+{{< youtube w7Ft2ymGmfc >}}
+{{< youtube id="w7Ft2ymGmfc" start="30" title="A talk" >}}
+{{< vimeo 146022717 >}}
+{{< gist spf13 7896402 >}}
+{{< gist user="spf13" id="7896402" file="gist.go" >}}
+```
+
+- YouTube uses the privacy-enhanced `youtube-nocookie.com` domain, and Vimeo is loaded with do-not-track on.
+- A gist runs in an iframe with an opaque origin, so its script cannot read this page, its cookies or its storage.
+- Video IDs, gist users and file names are validated at build time. Anything unexpected fails the build instead of producing markup.
+- Hugo removed its built-in `gist` shortcode in v0.156, so this theme provides one.
+
+Hugo's other embed shortcodes, such as `x` and `instagram`, are not click-to-load. By default they use third-party JavaScript. Setting `simple = true` under `[privacy.x]` or `[privacy.instagram]` in your site config removes the JavaScript, but readers' browsers may still contact those services to show the content.
+
+For `figure`, use the `caption` parameter for a short caption. `title` renders a heading inside the caption.
+
 ## Credits
 
 Typography is based on Vapor by Seth Lilly (MIT). Fonts are bundled under the SIL Open Font License.

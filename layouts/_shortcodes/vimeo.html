@@ -1,0 +1,16 @@
+{{- /* {{< vimeo ID >}} or {{< vimeo id="ID" h="HASH" title="..." >}}
+       Do-not-track on, click-to-load. Replaces Hugo's built-in shortcode. */ -}}
+{{- $id := string (or (.Get "id") (.Get 0)) -}}
+{{- if not (and $id (findRE `^[0-9]{4,12}$` $id)) }}{{ errorf "vimeo shortcode: missing or invalid video id %q (%s)" $id .Position }}{{ end -}}
+{{- $query := slice "dnt=1" "autoplay=1" -}}
+{{- with .Get "h" }}
+  {{- if not (findRE `^[a-f0-9]{6,16}$` .) }}{{ errorf "vimeo shortcode: invalid h hash (%s)" $.Position }}{{ end }}
+  {{- $query = $query | append (printf "h=%s" .) }}
+{{- end -}}
+{{- partial "embed.html" (dict
+  "kind" "vimeo"
+  "provider" "Vimeo"
+  "host" "player.vimeo.com"
+  "title" (.Get "title" | default "Vimeo video")
+  "src" (printf "https://player.vimeo.com/video/%s?%s" $id (delimit $query "&"))
+  "href" (printf "https://vimeo.com/%s" $id)) -}}

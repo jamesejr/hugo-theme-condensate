@@ -45,3 +45,9 @@ other = "{{ . }} posts"
 [topics_count]
 one = "{{ . }} topic"
 other = "{{ . }} topics"
+
+[embed_load]
+other = "Click to load from {{ .Host }}"
+
+[embed_privacy]
+other = "{{ .Provider }} will see your IP address and browser details."

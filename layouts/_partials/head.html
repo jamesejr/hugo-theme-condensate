@@ -22,6 +22,7 @@
 
 {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ partial "color-overrides.html" . }}
 <link rel="preload" href="{{ "fonts/roboto-slab-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ "fonts/merriweather-latin-300-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 

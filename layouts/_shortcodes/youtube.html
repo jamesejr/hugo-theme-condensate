@@ -1,0 +1,16 @@
+{{- /* {{< youtube ID >}} or {{< youtube id="ID" start="30" title="..." >}}
+       Privacy-enhanced domain, click-to-load. Replaces Hugo's built-in shortcode. */ -}}
+{{- $id := string (or (.Get "id") (.Get 0)) -}}
+{{- if not (and $id (findRE `^[A-Za-z0-9_-]{6,20}$` $id)) }}{{ errorf "youtube shortcode: missing or invalid video id %q (%s)" $id .Position }}{{ end -}}
+{{- $query := slice "autoplay=1" "rel=0" -}}
+{{- with .Get "start" }}
+  {{- if not (findRE `^[0-9]{1,6}$` .) }}{{ errorf "youtube shortcode: start must be a number of seconds (%s)" $.Position }}{{ end }}
+  {{- $query = $query | append (printf "start=%s" .) }}
+{{- end -}}
+{{- partial "embed.html" (dict
+  "kind" "youtube"
+  "provider" "YouTube"
+  "host" "youtube-nocookie.com"
+  "title" (.Get "title" | default "YouTube video")
+  "src" (printf "https://www.youtube-nocookie.com/embed/%s?%s" $id (delimit $query "&"))
+  "href" (printf "https://www.youtube.com/watch?v=%s" $id)) -}}

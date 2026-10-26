@@ -1,7 +1,7 @@
 ---
 title: "Hello, Condensate"
-date: 2026-10-20
-tags: ["Meta"]
+date: 2026-10-25T20:00:00
+tags: ["Features"]
 ---
 This is the first sample post. Condensate keeps the page almost entirely type: a slab-serif title, a condensed date line, and a comfortable serif for reading.
 

@@ -1,0 +1,19 @@
+{{- /* {{< gist USER ID >}} or {{< gist user="USER" id="ID" file="name.py" >}}
+       Click-to-load; the gist script runs in a sandboxed iframe with no access to
+       this page. Hugo removed its built-in gist shortcode in v0.156. */ -}}
+{{- $user := string (or (.Get "user") (.Get 0)) -}}
+{{- $id := string (or (.Get "id") (.Get 1)) -}}
+{{- if not (and $user (findRE `^[A-Za-z0-9-]{1,39}$` $user)) }}{{ errorf "gist shortcode: missing or invalid user %q (%s)" $user .Position }}{{ end -}}
+{{- if not (and $id (findRE `^[a-f0-9]{5,40}$` $id)) }}{{ errorf "gist shortcode: missing or invalid gist id %q (%s)" $id .Position }}{{ end -}}
+{{- $src := printf "https://gist.github.com/%s/%s.js" $user $id -}}
+{{- with .Get "file" }}
+  {{- if not (findRE `^[A-Za-z0-9._-]{1,100}$` .) }}{{ errorf "gist shortcode: invalid file name (%s)" $.Position }}{{ end }}
+  {{- $src = printf "%s?file=%s" $src . }}
+{{- end -}}
+{{- partial "embed.html" (dict
+  "kind" "gist"
+  "provider" "GitHub"
+  "host" "gist.github.com"
+  "title" (.Get "title" | default (printf "Gist %s/%s" $user $id))
+  "src" $src
+  "href" (printf "https://gist.github.com/%s/%s" $user $id)) -}}
