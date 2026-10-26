@@ -10,6 +10,17 @@
 
 A minimal, typography-first Hugo theme inspired by [Vapor](https://github.com/sethlilly/Vapor), a Ghost theme by Seth Lilly. Condensate is a Hugo implementation of the same idea with light and dark modes.
 
+## Features
+
+- **Typography first.** Clean, minimal and elegant, with slab-serif headings, a comfortable serif body and generous spacing. Fonts are bundled.
+- **Light and dark modes.** Follows the reader's system setting, with a toggle that remembers their choice. Override either palette with `[params.light]` and `[params.dark]`.
+- **Private by default.** No analytics and no third-party requests. YouTube, Vimeo and GitHub Gist embeds load only after the reader clicks, inside a sandboxed iframe.
+- **Syntax highlighting.** Highlighted at build time with no JavaScript, colors that follow light and dark mode, and a copy button on every code block.
+- **Configurable feed.** Set how many posts appear per page and how many lines of each post's preview are shown.
+- **Made for technical writing.** Optional table of contents, reading time, tags, and styled tables, task lists and blockquotes.
+- **Accessible and light.** Skip link, visible focus styles, reduced-motion and print styles, and a few KB of vanilla JavaScript with no frameworks.
+- **Standards friendly.** RSS, Open Graph tags and translatable strings out of the box.
+
 ## Installation
 
 Follow Hugo's [quick start](https://gohugo.io/getting-started/quick-start/) guide to create an empty website and clone **Condensate** into the themes directory as a submodule:
@@ -32,17 +43,6 @@ git clone https://github.com/jamesejr/hugo-theme-condensate
 cd hugo-theme-condensate/exampleSite
 hugo server --themesDir ../..
 ```
-
-## Features
-
-- **Typography first.** Clean, minimal and elegant, with slab-serif headings, a comfortable serif body and generous spacing. Fonts are bundled.
-- **Light and dark modes.** Follows the reader's system setting, with a toggle that remembers their choice. Override either palette with `[params.light]` and `[params.dark]`.
-- **Private by default.** No analytics and no third-party requests. YouTube, Vimeo and GitHub Gist embeds load only after the reader clicks, inside a sandboxed iframe.
-- **Syntax highlighting.** Highlighted at build time with no JavaScript, colors that follow light and dark mode, and a copy button on every code block.
-- **Configurable feed.** Set how many posts appear per page and how many lines of each post's preview are shown.
-- **Made for technical writing.** Optional table of contents, reading time, tags, and styled tables, task lists and blockquotes.
-- **Accessible and light.** Skip link, visible focus styles, reduced-motion and print styles, and a few KB of vanilla JavaScript with no frameworks.
-- **Standards friendly.** RSS, Open Graph tags and translatable strings out of the box.
 
 ## Configuration
 
