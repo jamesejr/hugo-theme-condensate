@@ -19,6 +19,8 @@ theme = "hugo-theme-condensate"
   # Preview length in lines (default 4, 0 = full summary).
   # summaryLines = 4
   tagline = "A minimal, typography-first Hugo theme inspired by Vapor."
+  # Path to an icon file in your static/ folder.
+  favicon = "favicon.svg"
   # Path under assets/ (or static/). Use a roughly square image.
   avatar = "images/avatar.svg"
   # Optional: zoom in and centre on a point if your photo is a wide shot.

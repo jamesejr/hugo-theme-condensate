@@ -10,6 +10,10 @@
 
 A minimal, typography-first Hugo theme inspired by [Vapor](https://github.com/sethlilly/Vapor), a Ghost theme by Seth Lilly. Condensate is a Hugo implementation of the same idea with light and dark modes.
 
+| Light | Dark |
+| --- | --- |
+| ![Condensate in light mode](images/screenshot.png) | ![Condensate in dark mode](images/screenshot-dark.png) |
+
 ## Features
 
 - **Typography first.** Clean, minimal and elegant, with slab-serif headings, a comfortable serif body and generous spacing. Fonts are bundled.
@@ -53,15 +57,24 @@ Posts per page uses Hugo's standard setting. Hugo's default is 10, so set it in 
   pagerSize = 5
 ```
 
-Other options go under `[params]`:
+Other options go under `[params]`. All are optional:
 
 ```toml
 [params]
-  # Max lines of each post's preview in the feed (default 4, 0 shows the full summary)
-  summaryLines = 4
-  # Meta description for pages without their own (defaults to `tagline`)
-  description = "A short summary of your site."
+  tagline = "A line shown under your name on the home page"
+  homeTitle = "Jane Doe"            # defaults to the site title
+  description = "Meta description"  # for pages without their own; falls back to tagline, then site title
+  avatar = "images/me.jpg"          # file under assets/ or static/, roughly square
+  favicon = "favicon.svg"           # file in your static/ folder
+  colorScheme = "system"            # or "light" / "dark"
+  showThemeToggle = true            # sun/moon button
+  showReadingTime = true
+  dateFormat = "Monday, January 2, 2006"
+  mainSections = ["posts"]          # which sections appear in the home feed
+  summaryLines = 4                  # preview lines in the feed, 0 shows the full summary
 ```
+
+Add `[[menus.main]]` entries for the top menu, as in `exampleSite/hugo.toml`. If your site has an `about` page, the avatar links to it. In a post's front matter, `toc: true` adds a table of contents. The avatar can also be tuned with `avatarAlt`, `avatarScale` and `avatarFocus`.
 
 ### Light and dark colors
 

@@ -1,10 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-{{- with or .Description .Summary site.Params.description site.Params.tagline }}
+{{- with or .Description .Summary site.Params.description site.Params.tagline site.Title }}
 <meta name="description" content="{{ . | plainify | truncate 160 }}">
 {{- end }}
 <link rel="canonical" href="{{ .Permalink }}">
+{{- with site.Params.favicon }}
+<link rel="icon" href="{{ . | relURL }}"{{ if strings.HasSuffix . ".svg" }} type="image/svg+xml"{{ end }}>
+{{- else }}
+<link rel="icon" href="data:,">
+{{- end }}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}{{ else }}
 <meta name="robots" content="noindex, nofollow">
 {{- end }}
